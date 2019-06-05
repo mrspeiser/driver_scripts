@@ -1,0 +1,16 @@
+#!/bin/bash
+dir="$(dirname "$(realpath "$0")")"
+lsmod | sort -nr
+
+old_reply="$REPLY"
+
+read -p "select?: " ANS
+
+if [[ ! "$ANS" =~ [^Yyes] ]]; then
+	select driver in $(lsmod | awk '{ print $1 }' | sort -r); do
+		if [[ $REPLY -eq 0 ]]; then
+			break;
+		fi
+		eval "$dir/modinfo $driver"
+	done
+fi

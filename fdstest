@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+echo "HelloThere!">FILE
+
+read X < FILE
+
+echo "X is: $X"
+
+rm FILE

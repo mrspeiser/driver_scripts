@@ -1,0 +1,10 @@
+#!/bin/bash
+
+dir="$(dirname "$(realpath "$0")")"
+DRIVER_NAME="$1"
+
+if [[ -z "$DRIVER_NAME" ]]; then
+	read -p "enter driver name: " DRIVER_NAME
+	modinfo "$DRIVER_NAME"
+fi
+modinfo "$1"
